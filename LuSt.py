@@ -795,9 +795,10 @@ if __name__ == '__main__':
     parser.add_argument('-d', "--debug", default=False, action="store_true", help='set to run in debug mode')
     parser.add_argument('-v', "--verbose", default=True, action="store_false", help='disable verbose mode')
     parser.add_argument('-n', "--noisify", default=True, action="store_false", help='disable noisifying output image,'
-                        'not recommended unless for very small payloads(less than 10% of maximum)')
+                        'not recommended unless for very small payloads(less than 10%% of maximum)')
     parser.add_argument('-c', "--cores", default=2, type=int, help='set additional processes value, default is 2')
-    parser.add_argument('-u', "--unsafe", default=False, action="store_true", help='run in unsafe mode')
+    parser.add_argument('-u', "--unsafe", default=False, action="store_true", help='run in  faster but unsafe mode with'
+                                                                                   'encoding assertions disabled')
     parser.add_argument('-b', "--benchmark", default=False, type=str,
                         help='run simple single process benchmark for given resolution, format: 100x100')
 
