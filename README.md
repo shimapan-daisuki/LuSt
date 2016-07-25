@@ -8,14 +8,14 @@ Usage and basics
 
 Restrictions:
   - installed python2.7
-  - due to used method of encoding the size of the secret is restricted to 1byte per 8 source image pixels.That translates to 259.2kb for a FHD(1920x1080) image.
+  - due to used method of encoding the size of the secret is restricted to 1byte per 8 source image pixels.
+  That translates to 259.2kb for a FHD(1920x1080) image.
 
 Any file can be encoded as long its size doesn't exceed that limit.
 
 LuSteg is commandline tool.
-Run the LuSteg.py from commandline/terminal.
 
-To display help message with argument list run:
+To display help message with accepted argument list run:
 
     python LuSteg.py -h
 
