@@ -1,4 +1,4 @@
-LuSteg
+LuSt
 ======
 
 Simple yet effective steganography tool written in python2.7 for creating lossless formats images with embedded hidden files.
@@ -6,7 +6,7 @@ Simple yet effective steganography tool written in python2.7 for creating lossle
 Overview
 ======
 
-LuSteg can create images with embeded hidden data in lossless formats such as .png, .bmp, .tiff from any source image in Pillow supported format(https://pillow.readthedocs.io/en/3.3.x/handbook/image-file-formats.html) and any arbitrary file.
+LuSt can create images with embeded hidden data in lossless formats such as .png, .bmp, .tiff from any source image in Pillow supported format(https://pillow.readthedocs.io/en/3.3.x/handbook/image-file-formats.html) and any arbitrary file.
 
 Restrictions:
   - installed python2.7 with PIL/Pillow,
@@ -20,18 +20,18 @@ Features:
   - using multiprocessing for faster encoding/decoding,
   - documented code.
 
-LuSteg is commandline tool.
+LuSt is commandline tool.
 
 Usage
 ======
 
 To display help message with list of accepted arguments run:
 
-    python LuSteg.py -h
+    python LuSt.py -h
 
 To decode hidden data from example image:
 
-    python LuSteg.py --mode decode --input test_images/test+secret_img.png.png --secret secret_img.png -p shimapan.daisuki
+    python LuSt.py --mode decode --input test_images/test+secret_img.png.png --secret secret_img.png -p shimapan.daisuki
 
 Author
 ======
