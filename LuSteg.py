@@ -23,10 +23,6 @@ under 8.3 Mpix.
 
 logging.basicConfig(filename='%s.log' % __file__, level=logging.ERROR, format='%(asctime)s %(message)s')
 
-# todo: add missing comments
-# todo: reorder some functions
-# todo: implement better header
-
 
 class IndicesRepeater(object):
     """Generator yielding unique sequence of image indices.
