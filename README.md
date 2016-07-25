@@ -30,6 +30,7 @@ To display help message with list of accepted arguments run:
     python LuSteg.py -h
 
 To decode hidden data from example image:
+
     python LuSteg.py --mode decode --input test_images/test+secret_img.png.png --secret secret_img.png -p shimapan.daisuki
 
 Author
