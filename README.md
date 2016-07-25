@@ -3,7 +3,7 @@ LuSteg
 
 Simple yet effective steganography tool written in python2.7 for creating lossless formats images with embedded hidden files.
 
-Usage and basics
+Overview
 ======
 
 LuSteg can create images with embeded hidden data in lossless formats such as .png, .bmp, .tiff from any source image in Pillow supported format(https://pillow.readthedocs.io/en/3.3.x/handbook/image-file-formats.html) and any arbitrary file.
@@ -22,7 +22,22 @@ Features:
 
 LuSteg is commandline tool.
 
+Usage
+======
+
 To display help message with list of accepted arguments run:
 
     python LuSteg.py -h
 
+To decode hidden data from example image:
+    python LuSteg.py --mode decode --input test_images/test+secret_img.png.png --secret secret_img.png -p shimapan.daisuki
+
+Author
+======
+
+Found this useful/helpful? You can donate here:
+
+shimapan.daisuki:
+- BTC:    15sPxM4hHEghrsZ8egdfubJ6hVesNuxAwd
+
+Contact: shimapan.daisuki@gmail.com
