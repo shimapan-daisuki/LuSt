@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import time
 
 
@@ -64,4 +64,3 @@ class ConsolePrinter(object):
 
 if __name__ == '__main__':
     pass
-

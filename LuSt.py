@@ -12,7 +12,7 @@ from console_printer import *
 
 _HEADER_VALIDATION_BYTES = 3
 _HEADER_LEN_BYTES = 3
-_MAX_SECRET_BYTE_LEN = 2 ** (_HEADER_LEN_BYTES  * 8)
+_MAX_SECRET_BYTE_LEN = 2 ** (_HEADER_LEN_BYTES * 8)
 """Three integer constants related to header format.
 
 Header consists of 3 validation bytes that correspond to first, second and last byte of password and of 3 byte integer
@@ -41,7 +41,7 @@ class IndicesRepeater(object):
         self.highest = 0
         self.pixel_count = pixel_count
         self.hash_seed = seed
-        self.hash_func=hash_func
+        self.hash_func = hash_func
         self.injected_indices = set()
         self.stuck_threshold = self.pixel_count / (256*256)
 
@@ -438,6 +438,7 @@ def encode_bits_mp(image_to_encode, indices_iter, bits_iter, debug_pix=None, pri
         func = encode_func_wrapper
 
     chunk_len = 1280 / process_count
+    _ = None
     if debug_pix:
         _ = time.time()
     for pos, encoded_pixel in pool.imap_unordered(func, supply, chunksize=chunk_len):
@@ -591,6 +592,8 @@ def encode_image(image_to_encode, secret, password, output_filename, verbose=Tru
     else:
         printf.display(True, phase='MODE 1+%d:' % process_count, progress='ENCODING')
     printf.display(True, phase='init...', progress='')
+
+    orig_distribution = None
     if noisify:
         orig_distribution = calculate_bit_distribution((decode_pixel(pxl) for pxl in image_to_encode.getdata()),
                                                        input_as_list_of_bits=True)
