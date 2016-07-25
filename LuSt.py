@@ -348,7 +348,7 @@ def supply_pixels(indices_iter, bits_iter, image_pixels, image_size, debug_pix=N
     for indice, bit in izip(indices_iter, bits_iter):
         pos = indice_to_pos(image_size, indice)
         if debug_pix:
-            pxl = debug_pix
+            pxl = get_debug_pixel(debug_pix, indices_iter)
         else:
             pxl = image_pixels[pos]
         yield pxl, bit, pos
@@ -394,7 +394,7 @@ def encode_bits(image_to_encode, indices_iter, bits_iter, debug_pix=None, printf
     for n, bit in izip(indices_iter, bits_iter):
         pos = indice_to_pos(image_to_encode.size, n)
         if debug_pix:
-            new_pxl = encode_pixel(debug_pix, bit)
+            new_pxl = encode_pixel(get_debug_pixel(debug_pix, indices_iter), bit)
         else:
             new_pxl = encode_pixel(image_pixels[pos], bit)
         if not skip_assert:
@@ -560,6 +560,26 @@ def noisify_image(image_to_noisify, secret, indices_used, original_distribution,
                        secret_bit_len=pixel_count - len(indices_used), process_count=process_count, skip_assert=True)
 
 
+def get_debug_pixel(debug_pix_settings, repeater):
+    """Creates debug pixel value based on pixel template and IndiceRepeater object attributes.
+
+    Args:
+        debug_pix_settings: tuple (base pixel color values as rgba tuple, mode string)
+        repeater: IndiceRepeater object
+
+    Returns:
+        tuple: pixel color values as rgba tuple
+    """
+    debug_pix_base, mode = debug_pix_settings
+    if mode == 'gradient':
+        debug_pixel = [255 - int(n*(float(len(repeater.injected_indices))/repeater.pixel_count)) for n in debug_pix_base]
+    elif mode == 'inverse-gradient':
+        debug_pixel = [int(n*(float(len(repeater.injected_indices))/repeater.pixel_count)) for n in debug_pix_base]
+    else:  # fall back to simple substitution
+        debug_pixel = debug_pix_base
+    return debug_pixel
+
+
 def encode_image(image_to_encode, secret, password, output_filename, verbose=True, debug=False, noisify=True,
                  process_count=None, skip_assert=False):
     """Encode secret inside given image.
@@ -580,7 +600,7 @@ def encode_image(image_to_encode, secret, password, output_filename, verbose=Tru
     """
     header_debug_pix, data_debug_pix, debug_log = None, None, None
     if debug:
-        header_debug_pix, data_debug_pix, debug_log = [255, 0, 255], [0, 255, 0], list()
+        header_debug_pix, data_debug_pix, debug_log = ([0, 255, 0], True), ([0, 255, 0], 'gradient'), list()
 
     printf = ConsolePrinter("{phase} {progress}\n", _clear=False, phase='', progress='', _disabled=not verbose)
 
