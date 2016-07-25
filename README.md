@@ -1,14 +1,14 @@
 LuSteg
 ======
 
-Simple yet effective steganography tool written in python2.7 for creating (.PNG,.BMP) images with embedded hidden files.
+Simple yet effective steganography tool written in python2.7 for creating lossless formats images with embedded hidden files.
 
 Usage and basics
 ======
 
 LuSteg allows to embed hidden 
 Restrictions:
-  - installed python2.7
+  - installed python2.7 with PIL/Pillow
   - due to used method of encoding the size of the secret is restricted to 1byte per 8 source image pixels.
   That translates to 259.2kb for a FHD(1920x1080) image.
 
