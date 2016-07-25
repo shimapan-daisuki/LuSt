@@ -13,7 +13,12 @@ Restrictions:
   - due to used method of encoding the size of the secret is restricted to 1byte per 8 source image pixels - that translates to 259.2kb for a FHD(1920x1080) image,
   - for the same reason any further conversion of encoded image to lossy formats or certain image manipulations will destroy hidden data.
 
-Any file can be encoded as long its size doesn't exceed that limit.
+Features:
+  - any file can be encoded as long its size doesn't exceed carrier limit,
+  - simple and free using only Pillow and standard library,
+  - practically near impossible to detect or decode (tested with StegExpose(https://github.com/b3dk7/StegExpose)),
+  - using multiprocessing for faster encoding/decoding,
+  - documented code.
 
 LuSteg is commandline tool.
 
