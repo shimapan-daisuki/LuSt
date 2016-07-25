@@ -1,12 +1,14 @@
-import random
-import hashlib
-from itertools import izip
-from console_printer import *
 import argparse
+import hashlib
 import logging
 import multiprocessing
+import random
 from functools import partial
+from itertools import izip
+
 from PIL import Image
+
+from console_printer import *
 
 _HEADER_VALIDATION_BYTES = 3
 _HEADER_LEN_BYTES = 3
@@ -628,7 +630,7 @@ def encode_image(image_to_encode, secret, password, output_filename, verbose=Tru
         printf.display(True, phase='noisyfing image...', progress='[100%]')
 
     if args.debug:
-        output_filename = 'debug_%s_n%d_%d.png' % (args.input, args.noisify, time.time())
+        output_filename = 'debug_n%d_%d.png' % (args.noisify, time.time())
     image_to_encode.save(output_filename)
 
     printf.display(True, phase='done.', progress='')
@@ -767,13 +769,14 @@ if __name__ == '__main__':
     parser.add_argument('-m', "--mode", type=str, choices=['d', 'decode', 'e', 'encode'], required=True,
                         help='choose the usage mode from encoding a secret into image and decoding secret from image')
     parser.add_argument('-i', "--input", type=str, default='input.png', help='path to the input image.')
-    parser.add_argument('-s', "--secret", type=str, default='secret', help='path for the secret')
+    parser.add_argument('-s', "--secret", type=str, default='secret', help='path for the input/output secret')
     parser.add_argument('-p', "--password", type=str, help='specify encryption password to encode/decode secret,'
                         'if not specified script will try to use --input for decoding and --output for encoding')
     parser.add_argument('-o', "--output", type=str, default='output.png', help='path to the output image')
     parser.add_argument('-d', "--debug", default=False, action="store_true", help='set to run in debug mode')
     parser.add_argument('-v', "--verbose", default=True, action="store_false", help='disable verbose mode')
-    parser.add_argument('-n', "--noisify", default=True, action="store_false", help='disable noisifying output image')
+    parser.add_argument('-n', "--noisify", default=True, action="store_false", help='disable noisifying output image,'
+                        'not recommended unless for very small payloads(less than 10% of maximum)')
     parser.add_argument('-c', "--cores", default=2, type=int, help='set additional processes value, default is 2')
     parser.add_argument('-u', "--unsafe", default=False, action="store_true", help='run in unsafe mode')
     parser.add_argument('-b', "--benchmark", default=False, type=str,
