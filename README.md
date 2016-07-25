@@ -6,7 +6,7 @@ Simple yet effective steganography tool written in python2.7 for creating lossle
 Overview
 ======
 
-LuSt can create images with embeded hidden data in lossless formats such as .png, .bmp, .tiff from any source image in Pillow supported format(https://pillow.readthedocs.io/en/3.3.x/handbook/image-file-formats.html) and any arbitrary file.
+LuSt can create images with embeded hidden data in lossless formats such as .png, .bmp, .tiff from any source image in Pillow [supported format](https://pillow.readthedocs.io/en/3.3.x/handbook/image-file-formats.html) and any arbitrary file.
 
 Restrictions:
   - installed python2.7 with PIL/Pillow,
@@ -16,7 +16,7 @@ Restrictions:
 Features:
   - any file can be encoded as long its size doesn't exceed carrier limit,
   - simple and free using only Pillow and standard library,
-  - practically near impossible to detect or decode (tested with StegExpose(https://github.com/b3dk7/StegExpose)),
+  - practically near impossible to detect or decode (tested with [StegExpose](https://github.com/b3dk7/StegExpose)),
   - using multiprocessing for faster encoding/decoding,
   - documented code.
 
@@ -39,6 +39,6 @@ Author
 Found this useful/helpful? You can donate here:
 
 shimapan.daisuki:
-- BTC:    15sPxM4hHEghrsZ8egdfubJ6hVesNuxAwd
+- BTC:  15sPxM4hHEghrsZ8egdfubJ6hVesNuxAwd
 
 Contact: shimapan.daisuki@gmail.com
