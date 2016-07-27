@@ -604,9 +604,6 @@ def encode_image(image_to_encode, secret, password, output_filename, verbose=Tru
 
     printf = ConsolePrinter("{phase} {progress}\n", _clear=False, phase='', progress='', _disabled=not verbose)
 
-    if process_count == 0:
-        process_count = multiprocessing.cpu_count()
-
     if debug:
         printf.display(True, phase='MODE 1+%d:' % process_count, progress='ENCODING IN DEBUG MODE')
     else:
@@ -710,7 +707,7 @@ def decode_image(image_to_decode, password, debug=False, verbose=True, process_c
     return secret_bytes, debug_log
 
 
-def benchmark(resolution):
+def benchmark(resolution, process_count=0):
     """Simple benchmark printing time to generate indices, decode and encode for 1/10th of pixles in given resolution.
 
     Notes:
@@ -724,8 +721,9 @@ def benchmark(resolution):
     indices = IndicesRepeater(pixel_count, str(time.time()))
     print 'bechmarking for %s, number of pixels:' % resolution, pixel_count
     st = time.time()
-    for _, __ in izip(indices, xrange(int(pixel_count/10))):
-        pass
+    for _ in xrange(int(pixel_count/10)):
+        n = indices.next()
+
     ed = time.time()
     indice_gen_time = ed-st
     print 'time to gen indices for 1/10th of pixels', indice_gen_time
@@ -737,6 +735,7 @@ def benchmark(resolution):
     ed = time.time()
     encode_pix_time = ed-st
     print 'time to encode 1/10th of pixels', encode_pix_time
+
     st = time.time()
     for pix in pixels:
         _ = decode_pixel(pix)
